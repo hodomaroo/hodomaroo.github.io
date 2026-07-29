@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Duho Kim — Backend Engineer</title>
-  <meta name="description" content="Junior Software Engineer · Backend · Korea University CS" />
+  <title>Duho Kim — Systems &amp; Backend Engineer</title>
+  <meta name="description" content="Korea University CS (major) · EE (double major) · Systems, Computer Architecture, Backend" />
   <meta name="theme-color" content="#0a0e14" />
 
   <!-- Fonts -->
@@ -368,6 +368,14 @@
       box-shadow: 0 0 24px var(--accent-glow);
     }
 
+    .chip em {
+      font-style: normal;
+      color: var(--accent);
+      font-size: 11px;
+      margin-left: 5px;
+      letter-spacing: 0.03em;
+    }
+
     /* ─────────── Experience ─────────── */
     .exp-item {
       display: grid;
@@ -512,6 +520,26 @@
       color: var(--muted);
       font-size: 14px;
       text-align: right;
+      line-height: 1.7;
+    }
+
+    .edu-item__tag {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 1px 6px;
+      margin-left: 4px;
+    }
+
+    .edu-item__gpa {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-top: 6px;
+      letter-spacing: 0.02em;
     }
 
     @media (max-width: 768px) {
@@ -658,6 +686,107 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* ─────────── Print / PDF (A4 CV) ─────────── */
+    @media print {
+      @page {
+        size: A4;
+        margin: 14mm 14mm 12mm;
+      }
+
+      :root {
+        --bg: #ffffff;
+        --paper: #ffffff;
+        --ink: #111418;
+        --ink-soft: #2c3138;
+        --muted: #5c626b;
+        --line: #d5d9df;
+        --line-soft: #e4e7ec;
+        --accent: #0f766e;
+        --accent-glow: transparent;
+      }
+
+      body {
+        background: #fff;
+        color: #111418;
+        font-size: 10.2pt;
+        line-height: 1.45;
+      }
+      body::before,
+      body::after { display: none !important; }
+
+      .topbar { display: none !important; }
+
+      .container { max-width: none; padding: 0; }
+
+      /* 애니메이션 요소가 인쇄 시 사라지지 않도록 */
+      .reveal,
+      .hero__meta,
+      .hero__name,
+      .hero__contacts {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+      }
+
+      .hero { padding: 0 0 10px; }
+      .hero__meta { margin-bottom: 8px; font-size: 8pt; }
+      .hero__name { font-size: 30pt; letter-spacing: -0.03em; }
+      .hero__contacts { margin-top: 10px; gap: 4px 16px; font-size: 8.5pt; }
+      .hero__contacts a::before { content: ""; }
+
+      section.block { padding: 12px 0; break-inside: avoid; }
+      .section-label { margin-bottom: 12px; font-size: 8pt; }
+
+      .about__text { font-size: 11pt; line-height: 1.4; }
+      .about__text br { display: none; }
+
+      .stack-grid { gap: 8px 24px; grid-template-columns: 130px 1fr; }
+      .stack-grid__items { padding-bottom: 8px; gap: 4px; }
+      .chip {
+        font-size: 8pt;
+        padding: 2px 7px;
+        background: #f6f7f9;
+        border-color: #dde1e6;
+        color: #2c3138;
+      }
+      .chip em { color: #0f766e; font-size: 7.5pt; }
+
+      .exp-item {
+        grid-template-columns: 120px 1fr;
+        gap: 20px;
+        padding: 12px 0;
+        break-inside: avoid;
+      }
+      .exp-item__period { font-size: 8.5pt; }
+      .exp-item__org { font-size: 14pt; }
+      .exp-item__role { font-size: 8pt; margin-top: 3px; }
+      .exp-item__project { margin-top: 10px; font-size: 10.5pt; }
+      .exp-item__desc { margin-top: 4px; font-size: 9.5pt; line-height: 1.45; }
+      .exp-item__bullets { margin-top: 8px; }
+      .exp-item__bullets li { font-size: 9.5pt; margin-bottom: 4px; line-height: 1.45; }
+      .exp-item__bullets code {
+        font-size: 8.5pt;
+        background: #f6f7f9;
+        border-color: #dde1e6;
+        color: #0f766e;
+      }
+
+      .edu-item { padding: 10px 0; break-inside: avoid; }
+      .edu-item__school { font-size: 12pt; }
+      .edu-item__major { font-size: 9pt; }
+      .edu-item__gpa { font-size: 8.5pt; color: #2c3138; }
+      .edu-item__tag { color: #0f766e; border-color: #dde1e6; }
+
+      .extras { gap: 28px; }
+      .extras__list li { font-size: 9pt; padding: 5px 0; }
+      .award { padding: 7px 0; font-size: 9pt; break-inside: avoid; }
+
+      footer { margin-top: 20px; padding: 14px 0 0; }
+      .footer__bottom { font-size: 7.5pt; }
+
+      a { color: inherit; text-decoration: none; }
+    }
   </style>
 </head>
 <body>
@@ -677,12 +806,13 @@
   <main class="container">
     <!-- ─────────── HERO ─────────── -->
     <section class="hero">
-      <div class="hero__meta">Junior Software Engineer · Seoul, KR · 2026</div>
+      <div class="hero__meta">Systems &amp; Backend · Seoul, KR · 2026</div>
       <h1 class="hero__name">Duho Kim</h1>
       <div class="hero__contacts">
         <a href="mailto:enghemdwkd@gmail.com">enghemdwkd@gmail.com</a>
         <a href="https://github.com/hodomaroo" target="_blank" rel="noopener">github.com/hodomaroo</a>
         <a href="https://openhodu.tistory.com/" target="_blank" rel="noopener">openhodu.tistory.com</a>
+        <a href="./Duho_Kim_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
       </div>
     </section>
 
@@ -694,8 +824,9 @@
       </div>
       <p class="about__text reveal">
         삼성전자 메모리 사업부에서 반도체 설비 엔지니어로 일하며<br> <strong>반도체 공정 Test Wafer 계측 리포트</strong>
-        를 자동으로 발행하는 시스템을 만들었습니다.<br><br>지금은 고려대학교 운영체제
-        연구실에서 서울시와 연계한 워치 기반 <strong>심전도 헬스케어</strong> 프로젝트의 백엔드 개발을 담당하고 있습니다.
+        를 자동으로 발행하는 시스템을 만들었습니다.<br><br>지금은 KIST에서 XR 디지털 트윈과 로봇을 잇는
+        <strong>원격 조작 시스템</strong>을 개발하며,<br>하드웨어와 소프트웨어가 맞닿는 층위 — 운영체제, 컴퓨터구조,
+        시스템 프로그래밍에 관심을 두고 있습니다.
       </p>
     </section>
 
@@ -739,17 +870,25 @@
           </div>
         </div>
         <div class="stack-grid__row" style="display: contents">
-          <div class="stack-grid__label">CS Foundations</div>
+          <div class="stack-grid__label">Systems</div>
           <div class="stack-grid__items">
-            <span class="chip">Operating Systems</span>
-            <span class="chip">Algorithms</span>
-            <span class="chip">Distributed Systems</span>
-            <span class="chip">Database</span>
-            <span class="chip">Computer Network</span>
-            <span class="chip">Data Structure</span>
-            <span class="chip">Software Security</span>
-            <span class="chip">Distributed Systems</span>
-            <span class="chip">Computer Architecture</span>
+            <span class="chip">Operating Systems <em>A+</em></span>
+            <span class="chip">Computer Architecture <em>A+</em></span>
+            <span class="chip">Computer System Design <em>A+</em></span>
+            <span class="chip">System Programming <em>A+</em></span>
+            <span class="chip">Computer Network <em>A+</em></span>
+            <span class="chip">Database <em>A+</em></span>
+          </div>
+        </div>
+        <div class="stack-grid__row" style="display: contents">
+          <div class="stack-grid__label">Theory · Math</div>
+          <div class="stack-grid__items">
+            <span class="chip">Data Structure <em>A+</em></span>
+            <span class="chip">Algorithms <em>A+</em></span>
+            <span class="chip">Discrete Math I·II <em>A / A+</em></span>
+            <span class="chip">Applied Mathematics <em>A+</em></span>
+            <span class="chip">Software Security <em>A</em></span>
+            <span class="chip">Information Security <em>A+</em></span>
           </div>
         </div>
       </div>
@@ -764,27 +903,38 @@
 
       <article class="exp-item reveal">
         <div class="exp-item__period">
-          2025.07 — <span class="now">Present</span>
+          2026.06 — <span class="now">2026.08 (예정)</span>
         </div>
         <div class="exp-item__body">
-          <h3 class="exp-item__org">고려대학교 운영체제 연구실</h3>
-          <div class="exp-item__role">Undergraduate Researcher</div>
+          <h3 class="exp-item__org">한국과학기술연구원 (KIST)</h3>
+          <div class="exp-item__role">Research Intern · 계절 인턴</div>
 
           <p class="exp-item__project">
-            서울시 연계 — 스마트워치 ECG 기반 심질환 헬스케어 애플리케이션
+            XR 디지털 트윈 기반 로봇 원격 조작 시스템
           </p>
           <p class="exp-item__desc">
-            워치에서 측정한 심전도 데이터를 받아 분석·기록하는 백엔드 서버를
-            설계하고 개발하고 있습니다.
+            VR 사용자가 디지털 트윈 상에서 지정한 파지 위치를 실제 로봇 팔의 모션으로
+            변환하는 원격 조작(Teleoperation) 파이프라인을 개발했습니다.
+            Unity(XR) · ROS · DB 서버로 나뉜 3-PC 환경에서 좌표계·상태 동기화 문제를
+            추적하고 해결하는 일을 맡았습니다.
           </p>
           <ul class="exp-item__bullets">
             <li>
-              <code>Node.js</code> · <code>Express</code> 기반 REST API 서버
-              구축 및 도메인 모델 설계
+              <code>MoveIt</code> 기반 원격 조작 액션 서버 신규 설계 — XR에서 전달받은
+              회전축·중심 좌표로 Cartesian 궤적을 생성하고, 접근 → 파지 → 회전 → 이탈
+              시퀀스를 상태 기계로 구성
             </li>
             <li>
-              <code>Docker</code> 컨테이너 이미지 빌드 후 <code>Google Cloud Platform</code> 위에
-              배포 환경 구성
+              로봇 손목 관절 한계를 넘는 대각도 회전을 <strong>재파지(re-grasp) 분할</strong>로
+              해결 — 직전 세그먼트의 관절 사용량을 실측해 되감기 방향을 자가 보정
+            </li>
+            <li>
+              <code>rosbridge</code> · <code>WebSocket</code> 으로 Unity ↔ ROS ↔
+              <code>MongoDB</code> 상태 동기화 정리, DB 자동 재접속과 실패 응답 처리를
+              추가해 조용한 실패(silent failure) 제거
+            </li>
+            <li>
+              <code>Gazebo</code> 시뮬레이션 환경 구성 및 서비스 상태 관제용 웹 패널 제작
             </li>
           </ul>
         </div>
@@ -793,7 +943,7 @@
       <article class="exp-item reveal">
         <div class="exp-item__period">2022.02 — 2026.03</div>
         <div class="exp-item__body">
-          <h3 class="exp-item__org">삼성전자 DS 부문</h3>
+          <h3 class="exp-item__org">삼성전자 DS 부문 · 메모리 사업부</h3>
           <div class="exp-item__role">Equipment Engineer</div>
 
           <p class="exp-item__project">
@@ -832,8 +982,12 @@
           <div class="edu-item__period">
             2025.03 — <span class="now">Present</span>
           </div>
-          <div class="edu-item__school">고려대학교</div>
-          <div class="edu-item__major">컴퓨터학과 학부</div>
+          <div class="edu-item__school">고려대학교 정보대학</div>
+          <div class="edu-item__major">
+            컴퓨터학과 <span class="edu-item__tag">주전공</span><br />
+            전기전자공학부 <span class="edu-item__tag">이중전공</span>
+            <div class="edu-item__gpa">GPA 4.41 / 4.5 · 환산 99.1 / 100 · 취득 62학점</div>
+          </div>
         </div>
         <div class="edu-item">
           <div class="edu-item__period">2019.03 — 2022.02</div>
@@ -921,6 +1075,7 @@
           <a href="mailto:enghemdwkd@gmail.com">Email</a>
           <a href="https://github.com/hodomaroo" target="_blank" rel="noopener">GitHub</a>
           <a href="https://openhodu.tistory.com/" target="_blank" rel="noopener">Blog</a>
+          <a href="./Duho_Kim_CV.pdf" target="_blank" rel="noopener">CV</a>
         </div>
       </div>
     </div>
