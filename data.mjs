@@ -56,6 +56,7 @@ export const entries = {
     ],links:[{label:'LG Aimers 공식 사이트',url:'https://www.lgaimers.ai/'},{label:'LG Aimers 9기 활동 기록',url:'https://app.notion.com/p/LG-Aimers-9-389feb58567680b69363efbb1df8978e'},{label:'온라인 해커톤 연구 정리',url:'https://app.notion.com/p/26-08-29-SOTA-3cbfeb585676803e8f09ef14e454e6dd'}]
   },
   roadmap: {
+    cover:{src:'./assets/roadmap-cover.png',alt:'고려대학교 컴퓨터학과 강의 로드맵 공식 대표 이미지',width:1200,height:630},
     category:'projects',title:'KUCSE Roadmap',kicker:'학생회 사업 · 단독 개발',subtitle:'수강 계획에 필요한 정보를 한곳에.',
     summary:'고려대학교 컴퓨터학과 수강 로드맵 · 강의평점·수강평 정리',period:'2026.09 — 2026.11',org:'고려대학교 컴퓨터학과 학생회',role:'단독 개발',
     tags:['학생회','웹 서비스','데이터 정리','KLUE 협의'],color:'rose',visual:'roadmap',
@@ -67,6 +68,7 @@ export const entries = {
     ],links:[{label:'사이트 방문',url:'https://kucse-roadmap.vercel.app/'}]
   },
   malo: {
+    cover:{src:'./assets/malo-cover.png',alt:'Malo INTHON 최종 발표자료 표지',width:2880,height:1620},
     category:'projects', title:'Malo', kicker:'AI · 한국어 학습', subtitle:'문법을 넘어, 말의 의도까지.',
     summary:'AI 캐릭터와 관계·맥락에 맞는 한국어를 연습하는 서비스', period:'2026.11.01 — 11.02', org:'고려대학교 정보대학 INTHON · 팀 삼김',
     role:'팀장 · 백엔드 · AI Agent · DevOps',
@@ -82,6 +84,7 @@ export const entries = {
     links:[{label:'프로젝트 소개',url:'https://github.com/2026-INTHON'},{label:'프론트엔드',url:'https://github.com/2026-INTHON/frontend'},{label:'백엔드',url:'https://github.com/2026-INTHON/backend'},{label:'AI',url:'https://github.com/2026-INTHON/ai'}]
   },
   medivc: {
+    cover:{src:'./assets/medivc-cover.png',alt:'MediVC 블록체인 & AI 해커톤 결선 발표자료 표지',width:1920,height:1080},
     category:'projects', title:'MediVC', kicker:'블록체인 · 응급 의료정보', subtitle:'말할 수 없는 순간, 의료정보를 연결하다.',
     summary:'환자 동의와 의료진 인증을 바탕으로 한 QR 의료정보 전달 시스템', period:'2026.05 — 2026.09 · 5개월', org:'2026 블록체인 & AI 해커톤 · 팀 블록체적화',
     role:'팀장 · 백엔드 · 블록체인',
@@ -155,6 +158,6 @@ export const entries = {
 
 export const categories = {
   projects:{title:'프로젝트',english:'Selected projects',description:'아이디어를 실제로 동작하는 서비스로.',ids:['roadmap','malo','medivc'],assignments:['cpu','systemdesign','crypto','hash'],color:'lilac'},
-  activities:{title:'대외활동·연구',english:'Beyond the classroom',description:'함께 만들고, 실험하며 넓혀온 경험.',ids:['inthon','council','research','aimers','blockchain','studies','robotics'],color:'mint'},
+  activities:{title:'대외활동·연구',english:'Beyond the classroom',description:'함께 만들고, 실험하며 넓혀온 경험.',groups:[{title:'대회',ids:['inthon','blockchain']},{title:'논문',ids:['research']},{title:'수상·선발',ids:['aimers','robotics']},{title:'스터디·학생회',ids:['studies','council']}],color:'mint'},
   experience:{title:'경력',english:'Work experience',description:'현장의 문제를 소프트웨어로 풀어낸 경험.',ids:['kist','samsung'],color:'slate'}
 };

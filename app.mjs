@@ -27,16 +27,21 @@ function home(){
 }
 
 function projectVisual(entry){
-  if(entry.visual==='roadmap')return `<div class="project-visual visual-roadmap" aria-label="KUCSE Roadmap: 분야별 전공 이수 흐름과 강의 정보"><span class="visual-wordmark">KUCSE <span>Roadmap</span></span><div class="course-path"><span>컴퓨터구조<small>COSE222</small></span><i aria-hidden="true">→</i><span>운영체제<small>COSE341</small></span><i aria-hidden="true">→</i><span>클라우드컴퓨팅<small>COSE444</small></span></div><div class="visual-bottom"><span>수강 계획을 위한 하나의 지도.</span><span>고려대학교 컴퓨터학과</span></div></div>`;
-  if(entry.visual==='malo')return `<div class="project-visual visual-malo" aria-label="Malo 서비스 개념: 대화하고 맥락을 이해하는 한국어 학습"><span class="visual-wordmark">Malo<span>✳</span></span><div class="dialogue-bubble bubble-one">“다음에 밥 한번 먹어요.”</div><div class="dialogue-bubble bubble-two">약속일까, 인사일까?<span>말 너머의 맥락을 연습하다.</span></div><div class="visual-bottom"><span>관찰 → 대화 → 피드백</span><span>한국어의 새로운 감각</span></div></div>`;
-  if(entry.visual==='medivc')return `<div class="project-visual visual-medivc" aria-label="MediVC 발견자 웹 서비스 흐름: QR 스캔, 119 신고, 위치 확인"><span class="visual-wordmark">Medi<span>VC</span></span><div class="medivc-flow"><div class="qr-symbol" aria-hidden="true"><i></i><i></i><i></i><b>+</b></div><span class="flow-line"></span><div class="call-symbol">119<span>신고 안내</span></div></div><div class="visual-bottom"><span>한 번의 스캔, 침착한 다음 행동.</span><span>발견자용 웹</span></div></div>`;
-  return '';
+  const cover=entry.cover;
+  return cover?`<div class="project-visual project-cover"><img src="${cover.src}" alt="${cover.alt}" width="${cover.width}" height="${cover.height}" loading="lazy" decoding="async"></div>`:'';
+}
+
+function entryRows(ids){
+  return `<div class="experience-list">${ids.map(id=>{const e=entries[id];return `<a class="experience-row" href="${route(id)}"><span class="row-period">${e.period}</span><div><span class="eyebrow">${e.kicker}</span><h3>${e.title}</h3><p>${e.summary}</p>${tags(e)}</div><span class="row-arrow">${documentIcon}</span></a>`;}).join('')}</div>`;
 }
 
 function categoryPage(key){
   const cat=categories[key];
-  const assignments=cat.assignments?`<section class="assignments-section"><header><span class="eyebrow">Selected assignments</span><h2>수업에서 만든 것들</h2></header><div class="experience-list assignment-list">${cat.assignments.map(id=>{const e=entries[id];return `<a class="experience-row" href="${route(id)}"><span class="row-period">${e.period}</span><div><span class="eyebrow">${e.kicker}</span><h3>${e.title}</h3><p>${e.summary}</p>${tags(e)}</div><span class="row-arrow">${documentIcon}</span></a>`;}).join('')}</div></section>`:'';
-  const body=key==='projects'?`<div class="project-grid">${cat.ids.map(id=>{const e=entries[id];return `<a class="project-card ${id==='roadmap'?'featured-project':''}" href="${route(id)}">${projectVisual(e)}<div class="project-card-body"><div class="project-card-meta"><span class="eyebrow">${e.kicker}</span><span>${e.period}</span></div><div class="project-card-title"><h2>${e.title}</h2><span class="circle-arrow">${documentIcon}</span></div><p>${e.summary}</p>${tags(e)}</div></a>`;}).join('')}</div>`:`<div class="experience-list">${cat.ids.map(id=>{const e=entries[id];return `<a class="experience-row" href="${route(id)}"><span class="row-period">${e.period}</span><div><span class="eyebrow">${e.kicker}</span><h2>${e.title}</h2><p>${e.summary}</p>${tags(e)}</div><span class="row-arrow">${documentIcon}</span></a>`;}).join('')}</div>`;
+  const assignments=cat.assignments?`<section class="assignments-section"><header><span class="eyebrow">Selected assignments</span><h2>수업에서 만든 것들</h2></header>${entryRows(cat.assignments)}</section>`:'';
+  let body;
+  if(key==='projects')body=`<div class="project-grid">${cat.ids.map(id=>{const e=entries[id];return `<a class="project-card ${id==='roadmap'?'featured-project':''}" href="${route(id)}">${projectVisual(e)}<div class="project-card-body"><div class="project-card-meta"><span class="eyebrow">${e.kicker}</span><span>${e.period}</span></div><div class="project-card-title"><h2>${e.title}</h2><span class="circle-arrow">${documentIcon}</span></div><p>${e.summary}</p>${tags(e)}</div></a>`;}).join('')}</div>`;
+  else if(cat.groups)body=cat.groups.map(group=>`<section class="category-group"><h2 class="group-heading">${group.title}</h2>${entryRows(group.ids)}</section>`).join('');
+  else body=`<section class="category-group"><h2 class="group-heading">Experience <span>경력</span></h2>${entryRows(cat.ids)}</section><section class="category-group"><h2 class="group-heading">Education <span>학력</span></h2><div class="experience-list">${profile.education.map(e=>`<article class="experience-row education-item"><span class="row-period">${e.period}</span><div><h3>${e.title}</h3><p>${e.description}</p>${e.note?`<p class="education-note">${e.note}</p>`:''}</div></article>`).join('')}</div></section>`;
   return `<section class="page-container"><a class="back-link" href="#/">← 원자로 돌아가기</a><header class="page-heading"><span class="eyebrow">${cat.english}</span><h1>${cat.title}<span class="heading-dot ${cat.color}"></span></h1><p>${cat.description}</p></header>${body}${assignments}<div class="page-crosslink"><span>전체 이력을 간결하게 보고 싶다면</span><a class="text-link" href="#/cv">CV 보기 ${arrow}</a></div></section>`;
 }
 
